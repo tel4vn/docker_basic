@@ -9,7 +9,7 @@
 
 ### Services (names below should be service names)
 - vote
-    - dockersamples/examplevotingapp_vote:before
+    - bretfisher/examplevotingapp_vote
     - web front end for users to vote dog/cat
     - ideally published on TCP 80. Container listens on 80
     - on frontend network
@@ -20,10 +20,10 @@
     - key/value storage for incoming votes
     - no public ports
     - on frontend network
-    - 1 replica
+    - 1 replica NOTE VIDEO SAYS TWO BUT ONLY ONE NEEDED
 
 - worker
-    - dockersamples/examplevotingapp_worker
+    - bretfisher/examplevotingapp_worker:java
     - backend processor of redis and storing results in postgres
     - no public ports
     - on frontend and backend networks
@@ -34,9 +34,10 @@
     - one named volume needed, pointing to /var/lib/postgresql/data
     - on backend network
     - 1 replica
+    - remember set env for password-less connections -e POSTGRES_HOST_AUTH_METHOD=trust
 
 - result
-    - dockersamples/examplevotingapp_result:before
+    - bretfisher/examplevotingapp_result
     - web app that shows results
     - runs on high port since just for admins (lets imagine)
     - so run on a high port of your choosing (I choose 5001), container listens on 80
