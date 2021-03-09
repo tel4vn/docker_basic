@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  db:
+    container_name: Mongo-db
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=${DATABASE}
+      - MONGODB_USER=${USERNAME}
+      - MONGODB_PASS=${PASS}
+    ports:
+      - 27020:27017
+
+volumes:
+  mongo-data:
